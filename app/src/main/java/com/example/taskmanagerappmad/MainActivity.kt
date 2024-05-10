@@ -3,19 +3,29 @@ package com.example.taskmanagerappmad
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var taskViewModel: TaskViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val repository = TaskRepository(TaskDatabase.getDatabase(this).taskDao())
+        val viewModelFactory = TaskViewModelFactory(repository)
+        taskViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
 
         drawerLayout = findViewById(R.id.drawer_layout)
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_nav, R.string.close_nav)
@@ -35,6 +45,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 drawerLayout.openDrawer(navigationView)
             }
         }
+
+        taskViewModel.allTasks.observe(this, Observer { tasks ->
+            // Log each task
+            tasks?.forEach { task ->
+                Log.d("MainActivity", "Task ID: ${task.id}, Task Name: ${task.title}")
+            }
+        })
 
     }
 
