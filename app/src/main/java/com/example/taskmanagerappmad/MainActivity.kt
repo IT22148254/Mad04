@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(),
+    NavigationView.OnNavigationItemSelectedListener,
+    TaskAdapter.OnDeleteClickListener{
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = TaskAdapter(emptyList())
+        adapter = TaskAdapter(emptyList(),this)
         recyclerView.adapter = adapter
 
         taskViewModel.allTasks.observe(this, Observer { tasks ->
@@ -63,6 +65,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
 
+    }
+
+    override fun onDeleteClick(task: Task) {
+        taskViewModel.delete(task)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
