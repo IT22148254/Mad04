@@ -19,5 +19,15 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         repository.delete(task)
     }
 
+    suspend fun getTaskById(taskId: Long): Task {
+        return repository.getTaskById(taskId)
+    }
+
+    fun updateTaskById(taskId: Long, title: String, description: String, time: String, date: String) {
+        viewModelScope.launch {
+            repository.updateTaskById(taskId, title, description, time, date)
+        }
+    }
+
 
 }

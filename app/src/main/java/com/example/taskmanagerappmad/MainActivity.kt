@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(),
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = TaskAdapter(emptyList(),this)
+        adapter = TaskAdapter(emptyList(),this,)
         recyclerView.adapter = adapter
 
         taskViewModel.allTasks.observe(this, Observer { tasks ->
