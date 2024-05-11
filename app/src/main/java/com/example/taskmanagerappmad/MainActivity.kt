@@ -11,6 +11,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import com.google.android.material.navigation.NavigationView
 
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var taskViewModel: TaskViewModel
+    private lateinit var adapter: TaskAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,8 +49,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = TaskAdapter(emptyList())
+        recyclerView.adapter = adapter
+
         taskViewModel.allTasks.observe(this, Observer { tasks ->
-            // Log each task
+
+            adapter.updateTasks(tasks)
+
             tasks?.forEach { task ->
                 Log.d("MainActivity", "Task ID: ${task.id}, Task Name: ${task.title}")
             }

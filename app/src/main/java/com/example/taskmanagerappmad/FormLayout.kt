@@ -1,5 +1,6 @@
 package com.example.taskmanagerappmad
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.DatePicker
@@ -59,6 +60,8 @@ class FormLayout : AppCompatActivity() {
             lifecycleScope.launch {
                 taskViewModel.insert(task)
             }
+
+            startActivity(Intent(this,MainActivity::class.java))
 
         }
     }
