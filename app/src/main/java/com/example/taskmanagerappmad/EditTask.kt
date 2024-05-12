@@ -18,7 +18,6 @@ class EditTask : AppCompatActivity() {
 
         val taskId = intent.getIntExtra("taskId",-1)
 
-        //lateinit var upTask: Task
         val repository = TaskRepository(TaskDatabase.getDatabase(this).taskDao())
         val viewModelFactory = TaskViewModelFactory(repository)
         taskViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
@@ -26,7 +25,7 @@ class EditTask : AppCompatActivity() {
         lifecycleScope.launch {
             val upTask = taskViewModel.getTaskById(taskId.toLong())
             updateUI(upTask)
-            Log.d("UPDATE task", upTask.toString())
+            //Log.d("UPDATE task", upTask.toString())
         }
 
         val updateBtn = findViewById<Button>(R.id.updateButton)
