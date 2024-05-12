@@ -7,7 +7,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/inc"
-        android:label="Task Manager"
+        android:label="My ToDo List"
         android:roundIcon="@drawable/inc"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskManagerAppMAD"
