@@ -47,14 +47,12 @@ class EditTask : AppCompatActivity() {
     }
 
     private fun updateUI(task: Task) {
-        // Find views
+
         val titleInput = findViewById<EditText>(R.id.EditTitleInput)
         val descriptionInput = findViewById<EditText>(R.id.EditDescriptionInput)
         val timeInput = findViewById<EditText>(R.id.EditTimeInput)
         val dateInput = findViewById<EditText>(R.id.EditDateInp)
 
-
-        // Set values to input fields
         titleInput.setText(task.title)
         descriptionInput.setText(task.description)
         timeInput.setText(task.time)

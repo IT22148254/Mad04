@@ -29,7 +29,6 @@ class FormLayout : AppCompatActivity() {
         val saveButton = findViewById<Button>(R.id.saveButton)
 
         timeInput.setOnClickListener {
-            // Show time picker when the time input field is clicked
             val calendar = Calendar.getInstance()
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
             val minute = calendar.get(Calendar.MINUTE)
@@ -37,7 +36,6 @@ class FormLayout : AppCompatActivity() {
             val timePickerDialog = TimePickerDialog(
                 this,
                 { _, selectedHour, selectedMinute ->
-                    // Handle time selection
                     val time = String.format("%02d:%02d", selectedHour, selectedMinute)
                     timeInput.setText(time)
                 },

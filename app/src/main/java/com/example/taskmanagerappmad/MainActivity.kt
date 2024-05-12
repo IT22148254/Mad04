@@ -81,9 +81,8 @@ class MainActivity : AppCompatActivity(),
                 startActivity(Intent(this,MainActivity::class.java))
             }
             R.id.nav_about->{
-
+                startActivity(Intent(this,AboutUs::class.java))
             }
-            // Add more cases for other menu items if needed
         }
         return true
     }
