@@ -77,6 +77,12 @@ class MainActivity : AppCompatActivity(),
                 val intent = Intent(this, FormLayout::class.java)
                 startActivity(intent)
             }
+            R.id.nav_home -> {
+                startActivity(Intent(this,MainActivity::class.java))
+            }
+            R.id.nav_about->{
+
+            }
             // Add more cases for other menu items if needed
         }
         return true
