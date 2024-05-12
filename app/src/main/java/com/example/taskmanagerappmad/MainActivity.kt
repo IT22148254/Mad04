@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -60,9 +61,14 @@ class MainActivity : AppCompatActivity(),
 
             adapter.updateTasks(tasks)
 
-            tasks?.forEach { task ->
-                Log.d("MainActivity", "Task ID: ${task.id}, Task Name: ${task.title}")
+            if (tasks.isEmpty()) {
+                val ttt: TextView = findViewById(R.id.ttt)
+                ttt.text = "No pending tasks ..."
             }
+
+//            tasks?.forEach { task ->
+//                Log.d("MainActivity", "Task ID: ${task.id}, Task Name: ${task.title}")
+//            }
         })
 
     }
@@ -74,8 +80,7 @@ class MainActivity : AppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_settings -> {
-                val intent = Intent(this, FormLayout::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, FormLayout::class.java))
             }
             R.id.nav_home -> {
                 startActivity(Intent(this,MainActivity::class.java))

@@ -45,9 +45,10 @@
                 android:gravity="center_horizontal">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="10dp"
-                    android:text="Your pending task list"
+                    android:textStyle="italic"
+                    android:id="@+id/ttt"
                     android:textSize="24dp" />
 
                 <TextView

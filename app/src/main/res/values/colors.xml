@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#1538F6</color>
     <color name="yel">#E7ECB5</color>
+    <color name="suc">#8BC34A</color>
+    <color name="warn">#FFEB3B</color>
+    <color name="dan">#E41C0E</color>
 </resources>

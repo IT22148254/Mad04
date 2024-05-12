@@ -79,9 +79,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="35dp"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/suc"
         android:background="@drawable/border_r"
         android:text="Save"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>
